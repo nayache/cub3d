@@ -14,7 +14,7 @@ static void	draw_sprite(t_info *info, int stripe)
 		d = x * 256 - info->height * 128 + info->svec.sprite_h * 128;
 		info->svec.texx = ((d * texHeight) / info->svec.sprite_h) / 256;
 		color = info->texture[4][texWidth * info->svec.texx + info->svec.texy];
-		if ((color & 0xFF00FF00) != 0)
+		if (color != 0)
 		{
 			pixel_put(info->win.img, x * info->sl + stripe * 4, 
 			(char *)&color, info->endian);
@@ -57,8 +57,8 @@ static void	draw_vector_sprite(t_info *info)
 
 static void	init_vector_sprite(t_info *info, int count)
 {
-	info->svec.spritey = info->sprite[count].y - info->vec.posy;
-	info->svec.spritex = info->sprite[count].x - info->vec.posx;
+	info->svec.spritey = info->sprite[count].y + 0.5 - info->vec.posy;
+	info->svec.spritex = info->sprite[count].x + 0.5 - info->vec.posx;
 	info->svec.invdet = 1.0 / (info->vec.planey * info->vec.dirx -
 			info->vec.diry * info->vec.planex);
 	info->svec.transformy = info->svec.invdet * (info->vec.dirx * 

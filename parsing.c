@@ -73,10 +73,16 @@ static int	save_resolution(s_list *token, t_info *info)
 		return (0);
 	token = token->next;
 	info->width = ft_atoi(token->str);
+	if (info->width <= 0)
+		return(0);
 	if (str_num(token->next->str) == 0)
 		return (0);
 	token = token->next;
 	info->height = ft_atoi(token->str);
+	if (info->height <= 0)
+		return (0);
+	if (ft_strcmp(token->next->str, "\n") != 0)
+		return (0);
 	return (1);
 }
 

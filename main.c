@@ -37,7 +37,6 @@ int		parse(int fd, s_list *token, t_info *info)
 	if (parse_tokens(token, info) == 0)
 	{
 		free_list(token);
-		free_path(&(info->path));
 		return (0);
 	}
 	free_list(token);
@@ -155,6 +154,7 @@ int		init_game(t_info *info, char *file)
 
 int		main(int ac, char **av)
 {
+	usleep(10000);
 	t_info info;
 	
 	if (ac == 2 || ac == 3)

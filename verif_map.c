@@ -5,8 +5,8 @@ static int	save_start_pos(char ***map, int y, int x, t_vector *vec, int n)
 	if (n != 1)
 		return (0);
 	init_start_camera(vec, (*map)[y][x]);
-	vec->posy = (double)y;
-	vec->posx = (double)x;
+	vec->posy = (double)y + 0.5;
+	vec->posx = (double)x + 0.5;
 	(*map)[y][x] = '0';
 	return (1);
 }

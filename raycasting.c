@@ -64,7 +64,9 @@ static void	save_coordinate(t_info *info, t_element *draw_tab, int y)
 {
 	int		drawstart;
 	int		drawend;
-	
+
+	if (info->vec.perpwalldist <= 0)
+		info->vec.perpwalldist = 0.10;
 	info->txt.lineheight = (int)(info->height / info->vec.perpwalldist);
 	drawstart = -info->txt.lineheight / 2 + info->height / 2;
 	drawend = info->txt.lineheight / 2 + info->height / 2;
@@ -90,7 +92,7 @@ static void	init_raycast(t_info *info, int x)
 
 int			raycast(t_info *info)
 {
-	usleep(10000);
+	usleep(15000);
 	int			y;
 	t_element	draw_tab[info->width];
 
