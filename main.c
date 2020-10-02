@@ -154,7 +154,7 @@ int		init_game(t_info *info, char *file)
 
 int		main(int ac, char **av)
 {
-	usleep(10000);
+	usleep(1000);
 	t_info info;
 	
 	if (ac == 2 || ac == 3)

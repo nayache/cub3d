@@ -63,7 +63,7 @@ static void	init_vector(t_vector *vec)
 	vec->oldplanex = 0.00;
 	vec->oldirx = 0.00;
 	vec->rotspeed = 0.08;
-	vec->movespeed = 0.07;
+	vec->movespeed = 0.10;
 }
 
 static void	init_key(t_key *key)

@@ -65,8 +65,8 @@ static void	save_coordinate(t_info *info, t_element *draw_tab, int y)
 	int		drawstart;
 	int		drawend;
 
-	if (info->vec.perpwalldist <= 0)
-		info->vec.perpwalldist = 0.10;
+	//if (info->vec.perpwalldist <= 0)
+	//	info->vec.perpwalldist = 0.10;
 	info->txt.lineheight = (int)(info->height / info->vec.perpwalldist);
 	drawstart = -info->txt.lineheight / 2 + info->height / 2;
 	drawend = info->txt.lineheight / 2 + info->height / 2;
@@ -104,6 +104,7 @@ int			raycast(t_info *info)
 		side_dist(info);
 		dda_algorithm(info, 0);
 		save_coordinate(info, draw_tab, y);
+	//	printf("%d | perp : %f\n", y, info->vec.perpwalldist);
 		texture_cast(info, draw_tab[y].start, draw_tab[y].end, y);
 		y++;
 	}
