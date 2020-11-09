@@ -52,9 +52,6 @@ int				check_wall(char **map, int size)
 
 static int		find_opening(char **map, int y, int x)
 {
-	int i;
-
-	i = 0;
 	if (!map[y - 1][x] || !(map[y - 1][x] == '0' || map[y - 1][x] == '1' || map[y - 1][x] == '2'))
 		return (1);
 	if (!map[y + 1][x] || !(map[y + 1][x] == '0' || map[y + 1][x] == '1' || map[y + 1][x] == '2'))
