@@ -13,6 +13,28 @@
 #define texwidth 64
 #define texheight 64
 
+#ifdef	__linux__
+
+#define ESC		65307
+#define ROTL	65361
+#define ROTR	65363
+#define UP		119
+#define DOWN	115
+#define RIGHT	100
+#define LEFT	97
+
+#else
+
+#define ESC		53
+#define ROTL	123
+#define ROTR	124
+#define UP		13
+#define DOWN	1
+#define RIGHT	2
+#define LEFT	0
+
+#endif
+
 typedef	struct	s_list	s_list;
 struct	s_list
 {

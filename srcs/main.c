@@ -69,19 +69,19 @@ void	event_key(t_info *info)
 
 int		key_press(int keycode, t_info *info)
 {
-	if (keycode == 65307)
+	if (keycode == ESC)
 		info->key.esc = 1;
-	if (keycode == 65361)
+	if (keycode == ROTL)
 		info->key.rotl = 1;
-	if (keycode == 65363)
+	if (keycode == ROTR)
 		info->key.rotr = 1;
-	if (keycode == 'w')
+	if (keycode == UP)
 		info->key.up = 1;
-	if (keycode == 's')
+	if (keycode == DOWN)
 		info->key.down = 1;
-	if (keycode == 'd')
+	if (keycode == RIGHT)
 		info->key.right = 1;
-	if (keycode == 'a')
+	if (keycode == LEFT)
 		info->key.left = 1;
 	return (0);
 }
