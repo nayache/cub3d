@@ -18,20 +18,35 @@ int			is_line_map(char *str)
 	return (1);
 }
 
+int				check_occurence(char *s1, const char s2[8][3], int size)
+{
+	int		i;
+
+	i = 0;
+	while (i < size)
+	{
+//		printf("je compare : [%s] et [%s]\n", s1, s2[i]);
+		if (ft_strcmp(s1, (char *)s2[i]) == 0)
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
 static s_list	*requiered_id(s_list *token)
 {
-	const char	id[8][3] = {"R\0", "NO\0", "SO\0", "WE\0", "EA\0", "S\0", "F\0", "C\0"};
+	const char	requiered[8][3] = {"R\0", "NO\0", "SO\0", "WE\0", "EA\0", "S\0", "F\0", "C\0"};
 	int			i;
 
-	if (ft_strcmp(token->str, (char *)id[0]) != 0)
-		return (0);
+	if (check_occurence(token->str, requiered, 8) == -1)
+		return (NULL);
 	i = 1;
 	while (token != NULL && i < 8)
 	{
 		if (ft_strcmp(token->str, "\n") == 0)
 		{
 			token = token->next;
-			if (ft_strcmp(token->str, (char *)id[i]) != 0)
+			if (check_occurence(token->str, requiered, 8) == -1)
 				return (NULL);
 			i++;
 		}
@@ -62,8 +77,8 @@ int			check_tokens(s_list *token)
 	s_list *tmp;
 	
 	tmp = requiered_id(token);
-		if (tmp == NULL)
-			return (0);
+	if (tmp == NULL)
+		return (0);
 	if (requiered_map(tmp) == 0)
 		return (0);
 	return (1);

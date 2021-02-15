@@ -56,21 +56,25 @@ void	free_buffer(t_info *info)
 
 int		exit_game(t_info *info)
 {
+	mlx_destroy_image(info->win.mlx_ptr, info->ptrs[0]);
+	mlx_destroy_image(info->win.mlx_ptr, info->ptrs[1]);
+	mlx_destroy_image(info->win.mlx_ptr, info->ptrs[2]);
+	mlx_destroy_image(info->win.mlx_ptr, info->ptrs[3]);
+	mlx_destroy_image(info->win.mlx_ptr, info->ptrs[4]);
 	mlx_destroy_image(info->win.mlx_ptr, info->win.img_ptr);
-	mlx_clear_window(info->win.mlx_ptr, info->win.win_ptr);
-	mlx_destroy_window(info->win.mlx_ptr, info->win.win_ptr);
-	free(info->win.mlx_ptr);
+	if (info->screenshot == 0)
+	{	
+		mlx_clear_window(info->win.mlx_ptr, info->win.win_ptr);
+		mlx_destroy_window(info->win.mlx_ptr, info->win.win_ptr);
+	}
 	free_map(info->map, info->map_h);
 	free_path(&(info->path));
-	free(info->sprite);
-	free(info->ptrs[0]);
-	free(info->ptrs[1]);
-	free(info->ptrs[2]);
-	free(info->ptrs[3]);
-	free(info->ptrs[4]);
-	free(info->ptrs);
 	free(info->texture);
+	free(info->ptrs);
+	free(info->sprite);
 	free_buffer(info);
 	free(info->zbuffer);
-	exit(42);
+	mlx_destroy_display(info->win.mlx_ptr);
+	free(info->win.mlx_ptr);
+	exit(0);
 }

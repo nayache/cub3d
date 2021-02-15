@@ -12,8 +12,10 @@ static void	draw_sprite(t_info *info, int stripe)
 	while (x < info->svec.drawendx)
 	{
 		d = x * 256 - info->height * 128 + info->svec.sprite_h * 128;
+		if (d < 0)
+			d = 0;
 		info->svec.texx = ((d * texHeight) / info->svec.sprite_h) / 256;
-		color = info->texture[4][texWidth * info->svec.texx + info->svec.texy];
+		color = info->texture[4][texWidth * info->svec.texx + info->svec.texy];   //bug
 		if (color != 0)
 		{
 			pixel_put(info->win.img, x * info->sl + stripe * 4, 

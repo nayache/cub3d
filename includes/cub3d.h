@@ -155,6 +155,16 @@ struct	s_list
 		t_pos		*next;
 	};
 
+	typedef	struct	s_bmp
+	{
+		unsigned int	first_px;
+		unsigned int	size_infoheader;
+		unsigned int	size_file;
+		unsigned int	size_px;
+		unsigned int	empty_px;
+		unsigned int	plane;
+	}					t_bmp;
+	
 	typedef struct	s_info
 	{
 		int			height;
@@ -171,6 +181,7 @@ struct	s_list
 		double		*zbuffer;
 		double		spr_dist;
 		int			size_sprite;
+		int			screenshot;
 		t_color     color;
 		t_vector	vec;
 		t_path		path;
@@ -193,9 +204,10 @@ int		check_wall(char **map, int size);
 int		verif_map(char **map, int size, t_vector *vec);
 void	sort_sprites(double *dist, t_info *info, int size);
 int		is_line_map(char *str);
-int		traduct_count(int count);
+int		traduct_count(char *str);
 void	free_split(char **tab);	
 void	print_info(t_info *info);
+int		check_occurence(char *s1, const char s2[8][3], int size);
 int		str_num(char *str);
 int		check_id(char *str, int count);
 int		verif_color(char *str);
@@ -233,5 +245,8 @@ void	texture_cast(t_info *info, int drawstart, int drawend, int y);
 void	sprite_cast(t_info *info);
 int		verif_datas(t_info *info);
 void	init_info(t_info *info);
+int		key_press(int keycode, t_info *info);
+int		key_release(int keycode, t_info *info);
 void	event_key(t_info *info);
+int		screenshot(t_info *info);
 #endif

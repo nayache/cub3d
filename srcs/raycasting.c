@@ -90,7 +90,6 @@ static void	init_raycast(t_info *info, int x)
 
 int			raycast(t_info *info)
 {
-	usleep(15000);
 	int			y;
 	t_element	draw_tab[info->width];
 
@@ -107,7 +106,9 @@ int			raycast(t_info *info)
 	}
 	draw(info, draw_tab);
 	sprite_cast(info);
+	if (info->screenshot == 1)
+		return(0);
 	mlx_put_image_to_window(info->win.mlx_ptr, info->win.win_ptr,
 	info->win.img_ptr, 0, 0);
-	return (1);
+	return (0);
 }

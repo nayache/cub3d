@@ -23,6 +23,7 @@ int		work(char **stock, char **line, char *neww)
 	if (!(*stock = ft_strdup(neww + 1)))
 	{
 		free(*line);
+		free(tmp);
 		return (-1);
 	}
 	free(tmp);

@@ -62,8 +62,8 @@ static void	init_vector(t_vector *vec)
 	vec->deltadisty = 0.00;
 	vec->oldplanex = 0.00;
 	vec->oldirx = 0.00;
-	vec->rotspeed = 0.08;
-	vec->movespeed = 0.10;
+	vec->rotspeed = 0.02;
+	vec->movespeed = 0.02;
 }
 
 static void	init_key(t_key *key)
@@ -90,6 +90,7 @@ void		init_info(t_info *info)
 	info->buffer = NULL;
 	info->zbuffer = NULL;
 	info->spr_dist = 0;
+	info->screenshot = 0;
 	init_vector(&info->vec);
 	init_txt(&info->txt);
 	init_key(&info->key);

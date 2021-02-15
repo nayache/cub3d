@@ -32,12 +32,20 @@ int		str_num(char *str)
 	return (1);
 }
 
-int		traduct_count(int count)
+int		traduct_count(char *str)
 {
-	if (count >= 1 && count <= 5)
-		return (1);
-	if (count == 6 || count == 7)
-		return (2);
+	int count;
+
+	if (ft_strcmp(str, "R") == 0)
+		count = 0;
+	if (ft_strcmp(str, "NO") == 0 || ft_strcmp(str, "SO") == 0)
+		count = 1;
+	if (ft_strcmp(str, "EA") == 0 || ft_strcmp(str, "WE") == 0)
+		count = 1;
+	if (ft_strcmp(str, "S") == 0)
+		count = 1;
+	if (ft_strcmp(str, "C") == 0 || ft_strcmp(str, "F") == 0)
+		count = 2;
 	return (count);
 }
 

@@ -22,7 +22,7 @@ int		lst_add(s_list *first, char *s)
 	while (tmp->next != NULL)
 		tmp = tmp->next;
 	tmp->next = new;
-		new->next = NULL;
+	new->next = NULL;
 	return (1);
 }
 
@@ -50,8 +50,14 @@ void	print_lst(s_list *token)
 {
 	while (token->next != NULL)
 	{
-		printf("[%s]", token->str);
+		ft_putchar('[');
+		ft_putstr(token->str);
+		ft_putchar(']');
+		//ft_putchar('\n');
 		token = token->next;
 	}
-	printf("[%s]", token->str);
+	ft_putchar('[');
+	ft_putstr(token->str);
+	ft_putchar(']');
+	//ft_putchar('\n');
 }

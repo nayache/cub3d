@@ -1,5 +1,18 @@
 #include "cub3d.h"
 
+void	print_map(char **map, int size)
+{
+	int i;
+
+	i = 0;
+	while (i < size)
+	{
+		ft_putstr(map[i]);
+		ft_putchar('\n');
+		i++;
+	}
+}
+
 void	get_color(t_info *info)
 {
 	info->color.ceiling = mlx_get_color_value(info->win.mlx_ptr,

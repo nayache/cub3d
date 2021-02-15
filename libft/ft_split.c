@@ -32,15 +32,17 @@ static int		ft_nb_word(char const *str, char *sep)
 	int word;
 
 	i = 0;
-	if (!ft_occurence(str, 0, sep))
-		word = 1;
-	else
-		word = 0;
-	while (str[i])
+	word = 0;
+	while (str[i] != '\0')
 	{
-		if (ft_occurence(str, i, sep) == 1 && !ft_occurence(str, i + 1, sep) &&
-				str[i + 1] != '\0')
+		if (ft_occurence(str, i, sep) != 1)
+		{
 			word++;
+			while (str[i] != '\0' && ft_occurence(str, i, sep) != 1)
+				i++;
+		}
+		if (str[i] == '\0')
+			return (word);
 		i++;
 	}
 	return (word);
@@ -77,13 +79,11 @@ static char		**work(char **split, char const *str, char *sep)
 			if (!(split[j] = malloc(sizeof(char) * (wlen(str, i, sep) + 1))))
 				return (NULL);
 			while (str[i] != '\0' && ft_occurence(str, i, sep) == 0)
-			{
-				split[j][k] = str[i++];
-				k++;
-			}
-			split[j][k] = '\0';
-			j++;
+				split[j][k++] = str[i++];
+			split[j++][k] = '\0';
 		}
+		if (str[i] == '\0')
+			break;
 		i++;
 	}
 	split[j] = NULL;

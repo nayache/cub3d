@@ -72,12 +72,16 @@ static int	save_resolution(s_list *token, t_info *info)
 	if (str_num(token->next->str) == 0)
 		return (0);
 	token = token->next;
+	if (ft_strlen(token->str) > 6)
+		token->str[5] = '\0';
 	info->width = ft_atoi(token->str);
 	if (info->width <= 0)
 		return(0);
 	if (str_num(token->next->str) == 0)
 		return (0);
 	token = token->next;
+	if (ft_strlen(token->str) > 6)
+		token->str[5] = '\0';
 	info->height = ft_atoi(token->str);
 	if (info->height <= 0)
 		return (0);
@@ -95,12 +99,15 @@ int			parse_tokens(s_list *token, t_info *info)
 	f_save[1] = save_path;
 	f_save[2] = save_color;
 	f_save[3] = save_map;
-	count = -1;
-	while (token != NULL && count != 7)
+	count = 0;
+	while (token != NULL && count < 8)
 	{
-		if ((count = check_id(token->str, 0)) != -1)
-			if ((f_save[traduct_count(count)](token, info)) == 0)
+		if (check_id(token->str, 0) != -1)
+		{
+			if ((f_save[traduct_count(token->str)](token, info)) == 0)
 				return (0);
+			count++;
+		}
 		token = token->next;
 	}
 	while (token != NULL && !is_line_map(token->str))

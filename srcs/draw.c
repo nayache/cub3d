@@ -30,9 +30,10 @@ static void	draw_walls(t_info *info, t_element *draw_tab)
 	{
 		start = draw_tab[y].start;
 		end = draw_tab[y].end;
-		while (start <= end)
+		while (start < end)
 		{
-			pixel_put(info->win.img, start * info->sl + y * 4, (char *)info->buffer[y] + start * 4,
+			pixel_put(info->win.img, start * info->sl + y * 4,
+			(char *)info->buffer[y] + start * 4,
 			info->endian);
 			start++;
 		}
