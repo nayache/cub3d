@@ -6,7 +6,7 @@
 /*   By: nayache <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 16:44:35 by nayache           #+#    #+#             */
-/*   Updated: 2019/10/17 19:30:58 by nayache          ###   ########.fr       */
+/*   Updated: 2021/02/18 22:07:29 by nayache          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static char		**work(char **split, char const *str, char *sep)
 			split[j++][k] = '\0';
 		}
 		if (str[i] == '\0')
-			break;
+			break ;
 		i++;
 	}
 	split[j] = NULL;

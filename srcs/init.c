@@ -1,44 +1,51 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nayache <nico.ayache@student.42.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/18 19:09:06 by nayache           #+#    #+#             */
+/*   Updated: 2021/02/18 21:22:58 by nayache          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-int		init_texture(t_info *info)
+int			init_texture(t_info *info)
 {
-	int width, height, bpp, sl, endian;
+	int tp;
 
 	if (!(info->ptrs = malloc(sizeof(void *) * 5)))
 		return (0);
 	if (!(info->texture = (int **)malloc(sizeof(int *) * 5)))
 		return (0);
 	info->ptrs[0] = mlx_xpm_file_to_image(info->win.mlx_ptr, info->path.north,
-	&width, &height);
-	info->texture[0] = (int *)mlx_get_data_addr(info->ptrs[0], &bpp, &sl
-	,&endian);
+	&tp, &tp);
+	info->texture[0] = (int *)mlx_get_data_addr(info->ptrs[0], &tp, &tp, &tp);
 	info->ptrs[1] = mlx_xpm_file_to_image(info->win.mlx_ptr, info->path.south,
-	&width,&height);
-	info->texture[1] = (int *)mlx_get_data_addr(info->ptrs[1], &bpp, &sl
-	,&endian);
+	&tp, &tp);
+	info->texture[1] = (int *)mlx_get_data_addr(info->ptrs[1], &tp, &tp, &tp);
 	info->ptrs[2] = mlx_xpm_file_to_image(info->win.mlx_ptr, info->path.west,
-	&width, &height);
-	info->texture[2] = (int *)mlx_get_data_addr(info->ptrs[2], &bpp, &sl
-	,&endian);
+	&tp, &tp);
+	info->texture[2] = (int *)mlx_get_data_addr(info->ptrs[2], &tp, &tp, &tp);
 	info->ptrs[3] = mlx_xpm_file_to_image(info->win.mlx_ptr, info->path.east,
-	&width, &height);
-	info->texture[3] = (int *)mlx_get_data_addr(info->ptrs[3], &bpp, &sl
-	,&endian);
+	&tp, &tp);
+	info->texture[3] = (int *)mlx_get_data_addr(info->ptrs[3], &tp, &tp, &tp);
 	info->ptrs[4] = mlx_xpm_file_to_image(info->win.mlx_ptr, info->path.sprite,
-	&width, &height);
-	info->texture[4] = (int *)mlx_get_data_addr(info->ptrs[4], &bpp, &sl
-	,&endian);
+	&tp, &tp);
+	info->texture[4] = (int *)mlx_get_data_addr(info->ptrs[4], &tp, &tp, &tp);
 	return (1);
 }
 
 static void	init_txt(t_txt *txt)
 {
-	txt->wallx = 0;	
-	txt->step = 0;	
-	txt->texpos = 0;	
-	txt->texX = 0;	
-	txt->texY = 0;	
-	txt->lineheight = 0;	
+	txt->wallx = 0;
+	txt->step = 0;
+	txt->texpos = 0;
+	txt->texx = 0;
+	txt->texy = 0;
+	txt->lineheight = 0;
 }
 
 static void	init_vector(t_vector *vec)
@@ -62,7 +69,7 @@ static void	init_vector(t_vector *vec)
 	vec->deltadisty = 0.00;
 	vec->oldplanex = 0.00;
 	vec->oldirx = 0.00;
-	vec->rotspeed = 0.02;
+	vec->rotspeed = 0.04;
 	vec->movespeed = 0.02;
 }
 

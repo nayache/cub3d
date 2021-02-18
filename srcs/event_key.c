@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   event_key.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nayache <nico.ayache@student.42.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/18 19:07:31 by nayache           #+#    #+#             */
+/*   Updated: 2021/02/18 19:08:18 by nayache          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	event_key(t_info *info)
@@ -40,7 +52,7 @@ int		key_press(int keycode, t_info *info)
 int		key_release(int keycode, t_info *info)
 {
 	if (keycode == 65307)
-		info->key.esc = 0; 
+		info->key.esc = 0;
 	if (keycode == 65361)
 		info->key.rotl = 0;
 	if (keycode == 65363)

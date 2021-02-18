@@ -1,4 +1,4 @@
-NAME = cub3d
+NAME = Cub3D
 
 OS = $(shell uname)
 
@@ -15,7 +15,8 @@ endif
 SRCS =	camera.c init.c main.c raysprite.c utils.c verif.c draw.c init_plane.c \
 		move.c raytext.c utils_lexing.c verif_map2.c exit_game.c lexing2.c \
 		parsing.c save_sprite.c utils_parsing.c verif_map.c get_next_line.c \
-		lexing.c raycasting.c utils2.c utils_sprite.c event_key.c screenshot.c
+		lexing.c raycasting.c utils2.c utils_sprite.c event_key.c screenshot.c \
+		utils3.c utils4.c utils_lexing2.c
 
 LIBS =	libft/libft.a minilibx-linux/libmlx_Linux.a
 

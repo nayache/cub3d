@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   verif.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nayache <nico.ayache@student.42.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/18 19:45:49 by nayache           #+#    #+#             */
+/*   Updated: 2021/02/18 19:46:25 by nayache          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static int	check_path(char *path, char c)
 {
 	int fd;
-	
+
 	if ((fd = open(path, O_RDONLY)) == -1)
 	{
 		if (c == 'N')
@@ -36,13 +48,29 @@ static int	verif_path(t_path path)
 	return (1);
 }
 
-
-
 int			verif_datas(t_info *info)
 {
-	if (!verif_path(info->path))
+	if (verif_path(info->path) == 0)
+	{
+		free(info->path.north);
+		free(info->path.south);
+		free(info->path.east);
+		free(info->path.west);
+		free(info->path.sprite);
+		free(info->sprite);
+		free_map(info->map, info->map_h);
 		return (0);
-	if (!verif_map(info->map, info->map_h, &info->vec))
+	}
+	if (verif_map(info->map, info->map_h, &info->vec) == 0)
+	{
+		free(info->path.north);
+		free(info->path.south);
+		free(info->path.east);
+		free(info->path.west);
+		free(info->path.sprite);
+		free(info->sprite);
+		free_map(info->map, info->map_h);
 		return (0);
+	}
 	return (1);
 }

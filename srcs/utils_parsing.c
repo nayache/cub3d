@@ -1,22 +1,16 @@
-#include "cub3d.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_parsing.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nayache <nico.ayache@student.42.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/18 19:37:28 by nayache           #+#    #+#             */
+/*   Updated: 2021/02/18 19:44:27 by nayache          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	print_info(t_info *info)
-{
-	int i;
-	
-	i = 0;
-	printf("%d %d\nNO %s\nSO %s\nEA %s\nWE %s\nS %s\n%d\n%d\n", info->width, 
-	info->height, info->path.north, info->path.south, info->path.east, 
-	info->path.west, info->path.sprite, info->color.floor, info->color.ceiling);
-	if (info->map[i] != NULL)
-	{
-		while (i < info->map_h)
-		{
-			printf("%s\n", info->map[i]);
-			i++;
-		}
-	}
-}
+#include "cub3d.h"
 
 int		str_num(char *str)
 {
@@ -69,25 +63,24 @@ int		verif_color(char *str)
 
 	count = 0;
 	i = 0;
-	if (str == NULL)
+	if (str == NULL || str[i] == ',')
 		return (0);
 	while (str[i] != '\0')
 	{
 		if (str[i] == ',')
 		{
-				count++;
-			if (str[i] == ',' && i == 0)
-				return (0);
+			count++;
 			if (str[i] == ',' && !is_num(str[i + 1]) && !is_num(str[i - 1]))
 				return (0);
 		}
 		else
+		{
 			if (is_num(str[i]) == 0)
 				return (0);
+		}
 		i++;
 	}
 	if (count != 2)
 		return (0);
 	return (1);
 }
-

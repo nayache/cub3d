@@ -1,36 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lexing.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nayache <nico.ayache@student.42.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/18 18:51:47 by nayache           #+#    #+#             */
+/*   Updated: 2021/02/18 21:55:30 by nayache          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-static int		save_to_list(s_list *token, char **tab)
-{
-	int i;
-
-	i = 0;
-	if (tab == NULL)
-		return (0);
-	while (tab[i] != NULL)
-	{
-		if (token->str == NULL)
-		{
-			token->str = ft_strdup(tab[i++]);
-			if (token->str == NULL)
-				return (0);
-		}
-		else
-			if (lst_add(token, tab[i++]) == 0)
-				return (0);
-	}
-//	if (!is_empty(tab) && tab + i != NULL) // si la line(tableau de str) n'est pas vide et que le dernier element de la line n'est pas null
-		if (lst_add(token, "\n") == 0)          // pour mettre le \n pask mon gnl les enleve.
-			return (0);
-	return (1);
-}
-
-static int		save_tokens3(s_list *token, int fd, char *sep)
+static int	save_tokens3(t_list *token, int fd, char *sep)
 {
 	char	*line;
 	char	**tab;
 	int		value;
-	
+
 	while ((value = get_next_line(fd, &line)) > -1)
 	{
 		if (is_line_map(line) == 0)
@@ -47,19 +34,19 @@ static int		save_tokens3(s_list *token, int fd, char *sep)
 			return (0);
 		free_split(tab);
 		if (value == 0)
-			break;
+			break ;
 	}
 	if (value == -1)
 		return (0);
 	return (1);
 }
 
-static int		save_tokens2(s_list *token, int fd, char *sep)
+static int	save_tokens2(t_list *token, int fd, char *sep)
 {
 	char	*line;
 	char	**tab;
 	int		value;
-	
+
 	while ((value = get_next_line(fd, &line)) > -1)
 	{
 		if (line[0] != '\0')
@@ -75,18 +62,19 @@ static int		save_tokens2(s_list *token, int fd, char *sep)
 		}
 		free(line);
 		if (value == 0)
-			break;
+			break ;
 	}
 	if (value == -1)
 		return (0);
 	return (0);
 }
 
-static int		count_id(s_list *token)
+static int	count_id(t_list *token)
 {
-	const char	id[8][3] = {"NO\0", "SO\0", "WE\0", "EA\0", "R\0", "C\0", "F\0", "S\0"};
+	const char	id[8][3] = {"NO\0", "SO\0", "WE\0", "EA\0", "R\0", "C\0", "F\0",
+	"S\0"};
 	int			count;
-	
+
 	if (token->str == NULL)
 		return (0);
 	count = 0;
@@ -107,7 +95,7 @@ static int		count_id(s_list *token)
 	return (count);
 }
 
-int		save_it(char *line, char **tab, char *sep, s_list *token)
+static int	save_it(char *line, char **tab, char *sep, t_list *token)
 {
 	tab = ft_split(line, sep);
 	if (save_to_list(token, tab) == 0)
@@ -122,7 +110,7 @@ int		save_it(char *line, char **tab, char *sep, s_list *token)
 	return (1);
 }
 
-int		save_tokens(s_list *token, int fd, char *sep)
+int			save_tokens(t_list *token, int fd, char *sep)
 {
 	char	*line;
 	char	**tab;
@@ -139,7 +127,7 @@ int		save_tokens(s_list *token, int fd, char *sep)
 		if (tmp == 0)
 			return (0);
 		if (tmp == 8 || value == 0)
-			break;
+			break ;
 	}
 	if (value == -1)
 		return (0);

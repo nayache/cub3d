@@ -1,6 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raysprite.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nayache <nico.ayache@student.42.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/18 18:58:22 by nayache           #+#    #+#             */
+/*   Updated: 2021/02/18 20:30:51 by nayache          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
-#define texWidth 64
-#define texHeight 64
 
 static void	draw_sprite(t_info *info, int stripe)
 {
@@ -14,11 +24,11 @@ static void	draw_sprite(t_info *info, int stripe)
 		d = x * 256 - info->height * 128 + info->svec.sprite_h * 128;
 		if (d < 0)
 			d = 0;
-		info->svec.texx = ((d * texHeight) / info->svec.sprite_h) / 256;
-		color = info->texture[4][texWidth * info->svec.texx + info->svec.texy];   //bug
+		info->svec.texx = ((d * TEXHEIGHT) / info->svec.sprite_h) / 256;
+		color = info->texture[4][TEXWIDTH * info->svec.texx + info->svec.texy];
 		if (color != 0)
 		{
-			pixel_put(info->win.img, x * info->sl + stripe * 4, 
+			pixel_put(info->win.img, x * info->sl + stripe * 4,
 			(char *)&color, info->endian);
 		}
 		x++;
@@ -32,10 +42,10 @@ static void	raycast_sprite(t_info *info)
 	stripe = info->svec.drawstarty;
 	while (stripe < info->svec.drawendy)
 	{
-		info->svec.texy = (int)(256 * (stripe - (-info->svec.sprite_w / 2 + 
-						info->svec.spr_screenx)) * texWidth / info->svec.sprite_w) / 256;
-		if (info->svec.transformx > 0 && stripe > 0 && stripe < info->width && 
-				info->svec.transformx < info->zbuffer[stripe])
+		info->svec.texy = (int)(256 * (stripe - (-info->svec.sprite_w / 2 +
+		info->svec.spr_screenx)) * TEXWIDTH / info->svec.sprite_w) / 256;
+		if (info->svec.transformx > 0 && stripe > 0 && stripe < info->width &&
+			info->svec.transformx < info->zbuffer[stripe])
 			draw_sprite(info, stripe);
 		stripe++;
 	}
@@ -63,32 +73,18 @@ static void	init_vector_sprite(t_info *info, int count)
 	info->svec.spritex = info->sprite[count].x + 0.5 - info->vec.posx;
 	info->svec.invdet = 1.0 / (info->vec.planey * info->vec.dirx -
 			info->vec.diry * info->vec.planex);
-	info->svec.transformy = info->svec.invdet * (info->vec.dirx * 
+	info->svec.transformy = info->svec.invdet * (info->vec.dirx *
 			info->svec.spritey - info->vec.diry * info->svec.spritex);
-	info->svec.transformx = info->svec.invdet * (-info->vec.planex * 
+	info->svec.transformx = info->svec.invdet * (-info->vec.planex *
 			info->svec.spritey + info->vec.planey * info->svec.spritex);
-	info->svec.spr_screenx = (int)((info->width / 2) * (1 + 
+	info->svec.spr_screenx = (int)((info->width / 2) * (1 +
 				info->svec.transformy / info->svec.transformx));
 	info->svec.sprite_h = abs((int)(info->height / (info->svec.transformx)));
 	info->svec.sprite_w = abs((int)(info->height / (info->svec.transformx)));
 }
 
-static void	init_distance(double *dist, t_info *info, int size)
-{
-	int i;
-
-	i = 0;
-	while (i < size)
-	{
-		dist[i] = ((info->vec.posy - info->sprite[i].y) * (info->vec.posy - 
-		info->sprite[i].y) + (info->vec.posx - info->sprite[i].x) *
-		(info->vec.posx - info->sprite[i].x));
-		i++;
-	}
-}
-
 void		sprite_cast(t_info *info)
-{	
+{
 	double		sprite_dist[info->size_sprite];
 	int			i;
 

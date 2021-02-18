@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nayache <nico.ayache@student.42.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/18 19:48:45 by nayache           #+#    #+#             */
+/*   Updated: 2021/02/18 19:49:14 by nayache          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static void	draw_ceiling(t_info *info, t_element *draw_tab)
@@ -45,7 +57,7 @@ static void	draw_floor(t_info *info, t_element *draw_tab)
 {
 	int	y;
 	int	start;
-	
+
 	y = 0;
 	while (y < info->width)
 	{

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   screenshot.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nayache <nico.ayache@student.42.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/18 19:35:46 by nayache           #+#    #+#             */
+/*   Updated: 2021/02/18 19:36:31 by nayache          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-static int		write_datas(int fd, t_info *info, int empty_px)
+static int	write_datas(int fd, t_info *info, int empty_px)
 {
 	int				w;
 	int				h;
@@ -27,7 +39,7 @@ static int		write_datas(int fd, t_info *info, int empty_px)
 	return (0);
 }
 
-static void		write_header(int fd, t_info *info, t_bmp info_bmp)
+static void	write_header(int fd, t_info *info, t_bmp info_bmp)
 {
 	write(fd, "BM", 2);
 	write(fd, &info_bmp.size_file, 4);
@@ -43,7 +55,7 @@ static void		write_header(int fd, t_info *info, t_bmp info_bmp)
 	write(fd, "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0", 16);
 }
 
-static void		init_info_bmp(t_bmp *info_bmp, int width, int height)
+static void	init_info_bmp(t_bmp *info_bmp, int width, int height)
 {
 	info_bmp->plane = 1;
 	info_bmp->first_px = 54;
@@ -58,7 +70,7 @@ static void		init_info_bmp(t_bmp *info_bmp, int width, int height)
 	}
 }
 
-int		screenshot(t_info *info)
+int			screenshot(t_info *info)
 {
 	t_bmp	info_bmp;
 	int		fd;
@@ -69,7 +81,7 @@ int		screenshot(t_info *info)
 		return (error("cant open info_bmp file."));
 	write_header(fd, info, info_bmp);
 	raycast(info);
-	write_datas(fd, info, info_bmp.empty_px);	
+	write_datas(fd, info, info_bmp.empty_px);
 	close(fd);
 	return (exit_game(info));
 }

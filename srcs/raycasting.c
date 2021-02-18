@@ -1,9 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nayache <nico.ayache@student.42.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/18 18:52:25 by nayache           #+#    #+#             */
+/*   Updated: 2021/02/18 18:55:32 by nayache          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 #include "mlx.h"
 #include "libft.h"
-#define texwidth 64
-#define texheight 64
-#define	numSprites 1
 
 static void	side_dist(t_info *info)
 {
@@ -54,10 +63,10 @@ static void	dda_algorithm(t_info *info, int hit)
 	}
 	if (info->vec.side == 0)
 		info->vec.perpwalldist = (info->vec.mapx - info->vec.posx +
-				(1 - info->vec.stepx) / 2) / info->vec.raydirx;
+		(1 - info->vec.stepx) / 2) / info->vec.raydirx;
 	else
-		info->vec.perpwalldist = (info->vec.mapy - info->vec.posy + 
-				(1 - info->vec.stepy) / 2) / info->vec.raydiry;
+		info->vec.perpwalldist = (info->vec.mapy - info->vec.posy +
+		(1 - info->vec.stepy) / 2) / info->vec.raydiry;
 }
 
 static void	save_coordinate(t_info *info, t_element *draw_tab, int y)
@@ -74,7 +83,7 @@ static void	save_coordinate(t_info *info, t_element *draw_tab, int y)
 		drawend = info->height - 1;
 	draw_tab[y].start = drawstart;
 	draw_tab[y].end = drawend;
-	info->zbuffer[y] = info->vec.perpwalldist;  // zbuffer je met perwalldist pour chaque rayon;
+	info->zbuffer[y] = info->vec.perpwalldist;
 }
 
 static void	init_raycast(t_info *info, int x)
@@ -107,7 +116,7 @@ int			raycast(t_info *info)
 	draw(info, draw_tab);
 	sprite_cast(info);
 	if (info->screenshot == 1)
-		return(0);
+		return (0);
 	mlx_put_image_to_window(info->win.mlx_ptr, info->win.win_ptr,
 	info->win.img_ptr, 0, 0);
 	return (0);

@@ -1,47 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_sprite.c                                     :+:      :+:    :+:   */
+/*   utils_lexing2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nayache <nico.ayache@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/18 19:47:37 by nayache           #+#    #+#             */
-/*   Updated: 2021/02/18 19:48:37 by nayache          ###   ########.fr       */
+/*   Created: 2021/02/18 19:55:25 by nayache           #+#    #+#             */
+/*   Updated: 2021/02/18 19:55:41 by nayache          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	ft_swap_double(double *a, double *b)
+int	check_occurence(char *s1, const char s2[8][3], int size)
 {
-	double	c;
-
-	c = *a;
-	*a = *b;
-	*b = c;
-}
-
-void		sort_sprites(double *dist, t_info *info, int size)
-{
-	int			i;
-	int			j;
-	t_sprite	tmp;
+	int		i;
 
 	i = 0;
-	while (i < size - 1)
+	while (i < size)
 	{
-		j = i + 1;
-		while (j < size)
-		{
-			if (dist[i] < dist[j])
-			{
-				ft_swap_double(dist + i, dist + j);
-				tmp = info->sprite[i];
-				info->sprite[i] = info->sprite[j];
-				info->sprite[j] = tmp;
-			}
-			j++;
-		}
+		if (ft_strcmp(s1, (char *)s2[i]) == 0)
+			return (i);
 		i++;
 	}
+	return (-1);
+}
+
+int	only_num(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (is_num(str[i]) == 0)
+			return (0);
+		i++;
+	}
+	return (1);
 }

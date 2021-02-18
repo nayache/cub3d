@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nayache <nico.ayache@student.42.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/18 19:54:19 by nayache           #+#    #+#             */
+/*   Updated: 2021/02/18 21:55:20 by nayache          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-static int	save_map(s_list *token, t_info *info)
+static int	save_map(t_list *token, t_info *info)
 {
 	int		i;
 
@@ -18,7 +30,7 @@ static int	save_map(s_list *token, t_info *info)
 	return (1);
 }
 
-static int	save_color(s_list *token, t_info *info)
+static int	save_color(t_list *token, t_info *info)
 {
 	char **tab;
 	char *tmp;
@@ -41,13 +53,12 @@ static int	save_color(s_list *token, t_info *info)
 		info->color.ceiling = 0 | ft_atoi(tab[0]);
 		info->color.ceiling = info->color.ceiling << 8 | ft_atoi(tab[1]);
 		info->color.ceiling = info->color.ceiling << 8 | ft_atoi(tab[2]);
-
 	}
 	free_split(tab);
 	return (1);
 }
 
-static int	save_path(s_list *token, t_info *info)
+static int	save_path(t_list *token, t_info *info)
 {
 	if (ft_strcmp("NO", (char *)token->str) == 0)
 		if ((info->path.north = ft_strdup(token->next->str)) == NULL)
@@ -67,20 +78,20 @@ static int	save_path(s_list *token, t_info *info)
 	return (1);
 }
 
-static int	save_resolution(s_list *token, t_info *info)
+static int	save_resolution(t_list *token, t_info *info)
 {
 	if (str_num(token->next->str) == 0)
 		return (0);
 	token = token->next;
-	if (ft_strlen(token->str) > 6)
+	if (ft_strlen(token->str) > 5)
 		token->str[5] = '\0';
 	info->width = ft_atoi(token->str);
 	if (info->width <= 0)
-		return(0);
+		return (0);
 	if (str_num(token->next->str) == 0)
 		return (0);
 	token = token->next;
-	if (ft_strlen(token->str) > 6)
+	if (ft_strlen(token->str) > 5)
 		token->str[5] = '\0';
 	info->height = ft_atoi(token->str);
 	if (info->height <= 0)
@@ -90,9 +101,9 @@ static int	save_resolution(s_list *token, t_info *info)
 	return (1);
 }
 
-int			parse_tokens(s_list *token, t_info *info)
+int			parse_tokens(t_list *token, t_info *info)
 {
-	int		(*f_save[4])(s_list *, t_info *);
+	int		(*f_save[4])(t_list *, t_info *);
 	int		count;
 
 	f_save[0] = save_resolution;

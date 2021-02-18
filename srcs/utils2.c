@@ -1,17 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils2.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nayache <nico.ayache@student.42.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/18 19:50:16 by nayache           #+#    #+#             */
+/*   Updated: 2021/02/18 21:55:41 by nayache          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
-
-void	print_map(char **map, int size)
-{
-	int i;
-
-	i = 0;
-	while (i < size)
-	{
-		ft_putstr(map[i]);
-		ft_putchar('\n');
-		i++;
-	}
-}
 
 void	get_color(t_info *info)
 {
@@ -42,7 +41,7 @@ void	free_split(char **tab)
 	free(tab);
 }
 
-int		size_map(s_list *token)
+int		size_map(t_list *token)
 {
 	int		size;
 

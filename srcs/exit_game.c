@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exit_game.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nayache <nico.ayache@student.42.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/18 19:54:53 by nayache           #+#    #+#             */
+/*   Updated: 2021/02/18 21:54:53 by nayache          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	free_map(char **map, int size)
@@ -13,9 +25,9 @@ void	free_map(char **map, int size)
 	free(map);
 }
 
-void	free_list(s_list *token)
+void	free_list(t_list *token)
 {
-	s_list *tmp;
+	t_list *tmp;
 
 	while (token != NULL)
 	{
@@ -63,7 +75,7 @@ int		exit_game(t_info *info)
 	mlx_destroy_image(info->win.mlx_ptr, info->ptrs[4]);
 	mlx_destroy_image(info->win.mlx_ptr, info->win.img_ptr);
 	if (info->screenshot == 0)
-	{	
+	{
 		mlx_clear_window(info->win.mlx_ptr, info->win.win_ptr);
 		mlx_destroy_window(info->win.mlx_ptr, info->win.win_ptr);
 	}

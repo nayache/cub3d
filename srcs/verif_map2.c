@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   verif_map2.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nayache <nico.ayache@student.42.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/18 19:56:23 by nayache           #+#    #+#             */
+/*   Updated: 2021/02/18 19:59:51 by nayache          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static int	it_close(char *str)
@@ -33,7 +45,7 @@ static int	full_wall(char *str)
 	return (1);
 }
 
-int				check_wall(char **map, int size)
+int			check_wall(char **map, int size)
 {
 	int i;
 
@@ -50,20 +62,24 @@ int				check_wall(char **map, int size)
 	return (1);
 }
 
-static int		find_opening(char **map, int y, int x)
+static int	find_opening(char **map, int y, int x)
 {
-	if (!map[y - 1][x] || !(map[y - 1][x] == '0' || map[y - 1][x] == '1' || map[y - 1][x] == '2'))
+	if (!map[y - 1][x] || !(map[y - 1][x] == '0' || map[y - 1][x] == '1' ||
+		map[y - 1][x] == '2'))
 		return (1);
-	if (!map[y + 1][x] || !(map[y + 1][x] == '0' || map[y + 1][x] == '1' || map[y + 1][x] == '2'))
+	if (!map[y + 1][x] || !(map[y + 1][x] == '0' || map[y + 1][x] == '1' ||
+		map[y + 1][x] == '2'))
 		return (1);
-	if (!map[y - 1][x] || !(map[y][x - 1] == '0' || map[y][x - 1] == '1' || map[y][x - 1] == '2'))
+	if (!map[y - 1][x] || !(map[y][x - 1] == '0' || map[y][x - 1] == '1' ||
+		map[y][x - 1] == '2'))
 		return (1);
-	if (!map[y - 1][x] || !(map[y][x + 1] == '0' || map[y][x + 1] == '1' || map[y][x + 1] == '2'))
+	if (!map[y - 1][x] || !(map[y][x + 1] == '0' || map[y][x + 1] == '1' ||
+		map[y][x + 1] == '2'))
 		return (1);
 	return (0);
 }
 
-int		check_opening(char **map, int size)
+int			check_opening(char **map, int size)
 {
 	int y;
 	int	x;
@@ -74,7 +90,7 @@ int		check_opening(char **map, int size)
 		x = 0;
 		while (map[y][x])
 		{
-			if (map[y][x] == '0' || map[y][x] == '2') // jai rjaouter pour le '2'
+			if (map[y][x] == '0' || map[y][x] == '2')
 				if (find_opening(map, y, x))
 					return (0);
 			x++;
