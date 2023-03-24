@@ -20,6 +20,7 @@ Running: ```- make && ./Cub3d <file.cub> <--save>```<br/>
      - 0 (empty space) </br>
      - 1 (wall) </br>
      - 2 (sprite) </br>
+     - N | S | E | W (view started position) </br>
 ```
 R  1600 1050
 F  40,80,60
